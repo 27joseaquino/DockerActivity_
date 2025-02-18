@@ -1,4 +1,5 @@
-version: "3.9"
+version: "3.8"
+
 services:
   app:
     build:
@@ -8,23 +9,24 @@ services:
       - "3000:3000"
     environment:
       DB_HOST: mysql
-      DB_USER: appuser
-      DB_PASSWORD: apppassword
-      DB_NAME: appdb
+      DB_USER: root
+      DB_PASSWORD: ""
+      DB_NAME: devops
     depends_on:
       - mysql
     networks:
       - app-network
+    command: ["npm", "test"]
 
   mysql:
     image: mysql:8.0
     volumes:
       - db-data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: appdb
-      MYSQL_USER: appuser
-      MYSQL_PASSWORD: apppassword
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: devops
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
     networks:
       - app-network
 

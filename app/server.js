@@ -25,10 +25,15 @@ db.connect(err => {
 // CRUD básico
 
 // Create
+// POST /items
 app.post('/items', (req, res) => {
+    console.log('Recebendo requisição POST em /items');
     const { name } = req.body;
     db.query('INSERT INTO items (name) VALUES (?)', [name], (err, result) => {
-        if (err) return res.status(500).json(err);
+        if (err) {
+            console.error('Erro ao inserir no banco de dados:', err);
+            return res.status(500).json(err);
+        }
         res.status(201).json({ id: result.insertId, name });
     });
 });
