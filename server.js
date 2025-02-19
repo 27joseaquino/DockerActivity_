@@ -64,7 +64,21 @@ app.delete('/items/:id', (req, res) => {
         res.status(200).send();
     });
 });
+beforeAll((done) => {
+    const server = app.listen(3001, () => {
+        console.log('Aplicação rodando na porta 3001');
+        done();
+    });
+});
 
-app.listen(3001, () => {
-    console.log('Aplicação rodando na porta 3001');
+afterAll((done) => {
+
+    app.close(done);
+});
+
+describe('Testando a API de itens', () => {
+    it('deve criar um item', async () => {
+        const response = await request(app).post('/itens').send({ name: 'item1' });
+        expect(response.status).toBe(201);
+    });
 });
