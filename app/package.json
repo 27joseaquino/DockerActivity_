@@ -5,8 +5,7 @@
     "main": "server.js",
     "scripts": {
       "start": "node server.js",
-      "test": "jest",
-      "npm install": "npm install"
+      "test": "jest"
     },
     "dependencies": {
       "dotenv": "^16.0.0",
