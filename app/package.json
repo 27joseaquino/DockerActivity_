@@ -6,7 +6,7 @@
     "scripts": {
       "start": "node server.js",
       "test": "jest",
-      "install": "npm install"
+      "npm install": "npm install"
     },
     "dependencies": {
       "dotenv": "^16.0.0",
