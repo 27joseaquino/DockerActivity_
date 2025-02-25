@@ -67,7 +67,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
-          source: "./docker-compose.yaml"
+          source: "docker-compose.yml"
           target: "~/"
 
       - name: Deploy on Digital Ocean via ssh
