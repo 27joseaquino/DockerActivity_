@@ -76,3 +76,13 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
+          script: |
+            # Extract the tag on job build
+              TAG=${{ needs.build.outputs.docker_tag }}
+              # Create env file
+              [ -e .env ] && rm .env
+              touch .env
+              echo  "DOCKER_IMAGE_TAG=$TAG" > .env
+              # Login Docker
+              docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+
