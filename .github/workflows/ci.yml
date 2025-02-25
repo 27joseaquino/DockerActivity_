@@ -70,6 +70,9 @@ jobs:
           source: "docker-compose.yml"
           target: "~/"
 
+      - name: Check Docker
+        run: docker --version
+
       - name: Deploy on Digital Ocean via ssh
         uses: appleboy/ssh-action@v0.1.3
         with:
@@ -84,3 +87,4 @@ jobs:
               touch .env
               echo  "DOCKER_IMAGE_TAG=$TAG" > .env
               # Login Docker
+              docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
