@@ -85,4 +85,3 @@ jobs:
               echo  "DOCKER_IMAGE_TAG=$TAG" > .env
               # Login Docker
               docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-
